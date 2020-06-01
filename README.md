@@ -1,2 +1,2 @@
-# hops_cotch
+# hop-scotch
  analysis of grasshopper escape response
