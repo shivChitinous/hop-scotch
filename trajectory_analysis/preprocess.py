@@ -52,7 +52,7 @@ def topview(x_i,y_i,x_f,y_f,x_mid,y_mid,x_stim,y_stim,tr,fig_file,zoom):
         plt.ylim([-720,0]); plt.xlim([0,1280])
     elif (zoom == True): 
         plt.ylim([-560,-160]); plt.xlim([440,840])
-    plt.title('Top View')
+    plt.title('Top View'+'- $I_'+fig_file[-9]+'-Tr_'+fig_file[-1]+'$')
     plt.savefig(fig_file+"_topview",dpi = 300)
     plt.show();
 
@@ -68,7 +68,7 @@ def sideview(tr,fig_file,zoom):
     elif (zoom == True):
         plt.ylim([-670,-50]); plt.xlim([440,840])
     plt.legend(['Jump Trajectory'])
-    plt.title('Side View')
+    plt.title('Side View'+'- $I_'+fig_file[-9]+'-Tr_'+fig_file[-1]+'$')
     plt.savefig(fig_file+"_sideview",dpi = 300)
     plt.show();
 
@@ -93,7 +93,7 @@ def vec_view(V_i,V_f,V_mid,V_stim,fig_file):
 
     plt.legend(['Initial Body Axis', 'Final Body Axis', 'Jump Trajectory', 'Stimulus Trajectory'], 
                loc = 'center right', borderaxespad = -13)
-    plt.ylim([-1.2,1.2]); plt.xlim([-1.2,1.2]); plt.title('Unit Vectors')
+    plt.ylim([-1.2,1.2]); plt.xlim([-1.2,1.2]); plt.title('Unit Vectors'+'- $I_'+fig_file[-9]+'-Tr_'+fig_file[-1]+'$')
     plt.savefig(fig_file+"_vec_view",dpi = 300,bbox_inches='tight')
     plt.show();
 
