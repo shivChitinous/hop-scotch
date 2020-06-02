@@ -209,6 +209,6 @@ def dist_plotter(a1,a2,a3,bin_size,Max,direction,fig_file,title,a,bt,mini,maxi):
         if i<len(a3): ax.plot(a3[i]*np.pi/180,Max,'o',color = 'teal',alpha = 0.5)
     fig.legend(['$I_1$', '$I_2$', '$I_3$'], loc = 'center left')
     plt.title(title, pad = 25)
-    plt.savefig(fig_file+title,dpi = 300,bbox_inches='tight'); 
+    plt.savefig(fig_file+title,dpi = 300,bbox_inches='tight')
     plt.show()
 
