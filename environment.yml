@@ -9,5 +9,5 @@ dependencies:
 - scipy
 - pip
 - pip:
-   - os
-   - glob
+  - os
+  - glob
