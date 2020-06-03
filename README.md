@@ -1,4 +1,5 @@
 # hop-scotch
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/shivChitinous/hop-scotch/master)
  analysis of grasshopper escape response
 
 
