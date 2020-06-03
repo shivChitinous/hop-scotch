@@ -7,7 +7,3 @@ dependencies:
 - seaborn
 - pandas
 - scipy
-- pip
-- pip:
-  - os
-  - glob
