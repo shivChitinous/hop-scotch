@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
@@ -11,16 +5,10 @@ import pandas as pd
 import seaborn as sns
 
 
-# In[2]:
-
-
 def unitvec(x_i, y_i):
     M_i = np.sqrt((np.diff(x_i)**2) + (np.diff(y_i)**2))
     V_i = np.array([np.diff(x_i)/M_i, np.diff(y_i)/M_i])
     return V_i
-
-
-# In[3]:
 
 
 def fit_vec(a, b):
@@ -30,9 +18,6 @@ def fit_vec(a, b):
     x = np.array([x.iloc[0], x.iloc[-1]]) #x-vec
     y = np.array([y.iloc[0], y.iloc[-1]]) #y-vec 
     return x,y
-
-
-# In[4]:
 
 
 def topview(x_i,y_i,x_f,y_f,x_mid,y_mid,x_stim,y_stim,tr,fig_file,zoom):
@@ -57,9 +42,6 @@ def topview(x_i,y_i,x_f,y_f,x_mid,y_mid,x_stim,y_stim,tr,fig_file,zoom):
     plt.show();
 
 
-# In[5]:
-
-
 def sideview(tr,fig_file,zoom):
     #visualize side view
     plt.plot(tr['midpoint_x_side'][tr['jump']>0], tr['midpoint_y_side'][tr['jump']>0], '-o', color = 'indigo', alpha = 0.5)
@@ -71,9 +53,6 @@ def sideview(tr,fig_file,zoom):
     plt.title('Side View'+'- $I_'+fig_file[-9]+'-Tr_'+fig_file[-1]+'$')
     plt.savefig(fig_file+"_sideview",dpi = 300)
     plt.show();
-
-
-# In[6]:
 
 
 def vec_view(V_i,V_f,V_mid,V_stim,fig_file):
@@ -96,9 +75,6 @@ def vec_view(V_i,V_f,V_mid,V_stim,fig_file):
     plt.ylim([-1.2,1.2]); plt.xlim([-1.2,1.2]); plt.title('Unit Vectors'+'- $I_'+fig_file[-9]+'-Tr_'+fig_file[-1]+'$')
     plt.savefig(fig_file+"_vec_view",dpi = 300,bbox_inches='tight')
     plt.show();
-
-
-# In[7]:
 
 
 def preprocess(tr,fig_file,zoom=False,mea = 3):
@@ -158,7 +134,7 @@ def preprocess(tr,fig_file,zoom=False,mea = 3):
     #was facing left of the stimulus
     
     #from bottom view
-    jump_top_x = tr['midpoint_x_top'][tr['jump']>0].iloc[mea] #we measure take-off angle and velocity 3 frames after hopper starts jumping
+    jump_top_x = tr['midpoint_x_top'][tr['jump']>0].iloc[mea] #we measure take-off angle and velocity 3 frames after hopper    starts jumping
     jump_top_y = tr['midpoint_y_top'][tr['jump']>0].iloc[mea]
 
     jump_side_x = tr['midpoint_x_side'][tr['jump']>0].iloc[mea]
@@ -180,7 +156,7 @@ def preprocess(tr,fig_file,zoom=False,mea = 3):
     
     take_off_angle = np.arctan(height/jump_dist_top)*180/np.pi ##
     
-    vel = jump_dist/(0.0125*mea) #divide by time #in cm/sec
+    vel = jump_dist/((1/239.7602)*mea) #divide by time #in cm/sec
     ##
     
     topview(x_i,y_i,x_f,y_f,x_mid,y_mid,x_stim,y_stim,tr,fig_file,zoom)
@@ -188,27 +164,3 @@ def preprocess(tr,fig_file,zoom=False,mea = 3):
     vec_view(V_i,V_f,V_mid,V_stim,fig_file)
     
     return turn_ang, azimuth, approach_angle, take_off_angle, vel
-
-def dist_plotter(a1,a2,a3,bin_size,Max,direction,fig_file,title,a,bt,mini,maxi):
-    degrees = np.hstack([a1,a2,a3])
-    a , b=np.histogram(degrees, bins=np.arange(a, 360+bin_size, bin_size))
-    centers = np.deg2rad(np.ediff1d(b)//2 + b[:-1])
-
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='polar')
-    ax.bar(centers, a, width=np.deg2rad(bin_size), bottom=bt, color='crimson', edgecolor='crimson', alpha = 0.5)
-    ax.set_theta_zero_location(direction)
-    ax.set_yticklabels([])
-    ax.set_thetamin(mini)
-    ax.set_thetamax(maxi)
-
-    N = len(degrees)
-    for i in range(0,N):
-        if i<len(a1): ax.plot(a1[i]*np.pi/180,Max,'o',color = 'indigo',alpha = 0.5)
-        if i<len(a2): ax.plot(a2[i]*np.pi/180,Max,'o',color = 'darkorange',alpha = 0.5)
-        if i<len(a3): ax.plot(a3[i]*np.pi/180,Max,'o',color = 'teal',alpha = 0.5)
-    fig.legend(['$I_1$', '$I_2$', '$I_3$'], loc = 'center left')
-    plt.title(title, pad = 25)
-    plt.savefig(fig_file+title,dpi = 300,bbox_inches='tight')
-    plt.show()
-
