@@ -6,5 +6,7 @@ dependencies:
 - matplotlib
 - seaborn
 - pandas
-- os
+- scipy
+ pip:
+ - os
 - glob
