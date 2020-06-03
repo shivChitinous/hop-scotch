@@ -29,7 +29,7 @@ def circ_dist_plotter(a1,a2,a3,bin_size,radius,zero_direction,fig_file,title,sta
     plt.show()
 
     
-def body_axis_plotter(X,Y,I,c,angle1,angle2,savename):
+def body_axis_plotter(X,Y,I,c,angle1,angle2,savename,zero_direction = "S"):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection = 'polar')
     for i in range(np.shape(X)[0]):
@@ -38,6 +38,7 @@ def body_axis_plotter(X,Y,I,c,angle1,angle2,savename):
         plt.polar([x0,x0],[0,1],'--',color = c[int(I.iloc[i])-1],alpha = 0.8)
     ax.set_yticklabels([])
     ax.yaxis.grid(False)
+    ax.set_theta_zero_location(zero_direction)
     plt.ylim([0,2.1])
     fig.legend([angle2,angle1], loc = 'upper right')
     plt.savefig(savename, dpi = 300)
@@ -63,7 +64,7 @@ def sign_plotter(X,Y,ylab,xlab,savename):
     plt.show(); sns.set()
 
     
-def round_plotter(X,Y,I,c,title,savename,min_ax_ang = 0,max_ax_ang = 360):
+def round_plotter(X,Y,I,c,title,savename,min_ax_ang = 0,max_ax_ang = 360,zero_direction = "S"):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection = 'polar')
     for i in range(np.shape(X)[0]):
@@ -72,11 +73,12 @@ def round_plotter(X,Y,I,c,title,savename,min_ax_ang = 0,max_ax_ang = 360):
     plt.title(title, pad = 25)
     ax.set_thetamin(min_ax_ang)
     ax.set_thetamax(max_ax_ang)
+    ax.set_theta_zero_location(zero_direction)
     plt.savefig(savename, dpi = 300)
     plt.show();
 
     
-def spoke_plotter(X,Y,title,savename,min_ax_ang = 0,max_ax_ang = 360):
+def spoke_plotter(X,Y,title,savename,min_ax_ang = 0,max_ax_ang = 360,zero_direction = "N"):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection = 'polar')
     for i in range(np.shape(X)[0]):
@@ -88,5 +90,6 @@ def spoke_plotter(X,Y,title,savename,min_ax_ang = 0,max_ax_ang = 360):
     plt.ylim([0,2.1])
     ax.set_thetamin(min_ax_ang)
     ax.set_thetamax(max_ax_ang)
+    ax.set_theta_zero_location(zero_direction)
     plt.savefig(savename, dpi = 300)
     plt.show();
