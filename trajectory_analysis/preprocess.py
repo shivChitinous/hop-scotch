@@ -38,7 +38,7 @@ def topview(x_i,y_i,x_f,y_f,x_mid,y_mid,x_stim,y_stim,tr,fig_file,zoom):
     elif (zoom == True): 
         plt.ylim([-560,-160]); plt.xlim([440,840])
     plt.title('Top View'+'- $I_'+fig_file[-9]+'-Tr_'+fig_file[-1]+'$')
-    plt.savefig(fig_file+"_topview",dpi = 300)
+    plt.savefig(fig_file+"_topview",dpi = 300,bbox_inches='tight')
     plt.show();
 
 
@@ -51,7 +51,7 @@ def sideview(tr,fig_file,zoom):
         plt.ylim([-670,-50]); plt.xlim([440,840])
     plt.legend(['Jump Trajectory'])
     plt.title('Side View'+'- $I_'+fig_file[-9]+'-Tr_'+fig_file[-1]+'$')
-    plt.savefig(fig_file+"_sideview",dpi = 300)
+    plt.savefig(fig_file+"_sideview",dpi = 300,bbox_inches='tight')
     plt.show();
 
 
